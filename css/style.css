@@ -5,9 +5,10 @@
   height: 340px;
   width: 340px;
   border: 1px dotted red;
-  /*display: flex;*/
-  /*align-items: stretch;*/
-
+  display: flex;
+  /*flex used to space out columns */
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 /*styling the rows inside the gameBoard*/
@@ -16,7 +17,6 @@
   width: 100%;
   border: 1px dotted blue;
   /*maybe I should use flex box for spacing*/
-  /*margin: 10px 0 10px 0;*/
   display: flex;
   justify-content: space-around;
 }
