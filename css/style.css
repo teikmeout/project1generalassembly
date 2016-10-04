@@ -1,0 +1,28 @@
+
+
+/*styling the game board div*/
+.gameBoard {
+  height: 340px;
+  width: 340px;
+  border: 1px dotted red;
+  /*display: flex;*/
+  /*align-items: stretch;*/
+
+}
+
+/*styling the rows inside the gameBoard*/
+.row {
+  height: 100px;
+  width: 100%;
+  border: 1px dotted blue;
+  /*maybe I should use flex box for spacing*/
+  /*margin: 10px 0 10px 0;*/
+  display: flex;
+  justify-content: space-around;
+}
+
+.cell {
+  height: 100px;
+  width: 100px;
+  border: 1px dotted orange;
+}
