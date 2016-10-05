@@ -9,22 +9,25 @@ $(function() {
 var boardSize = 3;
 
 //creating the vertical array to nest horizontal arrays
-var gameArray = new Array([],[],[]);
-var gameArray2 = [];
+var row1 = [0, 0, 0, 0];
+var row2 = [0, -1, 0, 0];
+var row3 = [0, 0, 0, 0];
+var row4 = [0, 0, 0, -1];
+var gameArray = new Array(row1,row2,row3,row4);
+
 
 // default function that populates a 3x3 array
 //with values from 1 to 9
-function populateArray(arrr) {
-  let counter = 1;
-  for (let i = 0; i < 2; i++) {
-    for (let j = 0; j < 2; j++){
-      arrr[i][j] = counter;
-      counter++;
-      console.log(`row ${i}, column ${j} = ${arrr[i][j]}`);
-    }
-  }
-}
-createArray(3,3);
+// function populateArray(arrr) {
+//   let counter = 1;
+//   for (let i = 0; i < 2; i++) {
+//     for (let j = 0; j < 2; j++){
+//       arrr[i][j] = counter;
+//       counter++;
+//       console.log(`row ${i}, column ${j} = ${arrr[i][j]}`);
+//     }
+//   }
+// }
 
 //FUNCTION: creates an empty array by taking arguments of
 //horizontal size and vertical size
@@ -42,8 +45,18 @@ function createArray(x, y) {
   console.log(gameArray3);
 }
 
+//FUNCTION: one by one check how many mines are around
+function flagger(arrr) {
+  //double for loop for iteration in matrix
+  for (let i = 0; i < arrr.length; i++) {
+    for (let j = 0; j < arrr[i].length; j++) {
 
-// this fn randomizes values to determine if there's going to be a mine
-function newGame(arrr) {
-  // for (let i = 0; i < gameArray.size)
+    }
+  }
 }
+
+//function created to add +1 to boxes around when you hit a mine
+function iterateAround(arrr) {
+
+}
+
