@@ -2,8 +2,8 @@
 
 /*styling the game board div*/
 .gameBoard {
-  height: 340px;
-  width: 340px;
+  height: 360px;
+  width: 360px;
   border: 1px dotted red;
   display: flex;
   /*flex used to space out columns */
@@ -13,7 +13,7 @@
 
 /*styling the rows inside the gameBoard*/
 .row {
-  height: 100px;
+  height: 30%;
   width: 100%;
   border: 1px dotted blue;
   /*maybe I should use flex box for spacing*/
@@ -22,7 +22,7 @@
 }
 
 .cell {
-  height: 100px;
-  width: 100px;
+  height: 40px;
+  width: 40px;
   border: 1px dotted orange;
 }
