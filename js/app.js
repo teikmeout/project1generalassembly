@@ -7,7 +7,7 @@
 
 //size of the board, will be taken from get form
 var boardSize = 3;
-
+//variable that defines how many mines are placed inside the gameBoard
 var difficulty = .3;
 
 //creating the vertical array to nest horizontal arrays
@@ -16,20 +16,6 @@ var row2 = [0, -1, 0, 0];
 var row3 = [-1, 0, 0, 0];
 var row4 = [0, 0, 0, -1];
 var gameArray = new Array(row1,row2,row3,row4);
-
-
-// default function that populates a 3x3 array
-//with values from 1 to 9
-// function populateArray(arrr) {
-//   let counter = 1;
-//   for (let i = 0; i < 2; i++) {
-//     for (let j = 0; j < 2; j++){
-//       arrr[i][j] = counter;
-//       counter++;
-//       console.log(`row ${i}, column ${j} = ${arrr[i][j]}`);
-//     }
-//   }
-// }
 
 //FUNCTION: creates an empty array by taking
 //ARGUMENTS: horizontal size and vertical size
@@ -69,7 +55,7 @@ function flagger(arrr) {
 }
 flagger(gameArray);
 
-//function created to count how many mines are around the boxes around
+//FUNCTION: created to count how many mines are around the boxes around
 //ARGUMENTS: the array to check, values or i and j from a for loop
 function addOneAllAround(arrr) {
   for (let i = 0 ; i < arrr.length; i++) {
@@ -132,38 +118,5 @@ function addOneAllAround(arrr) {
 }
 
 console.log(gameArray);
-
-  // //THIS PART ONLY APPLIES WHEN AT THE CENTER
-  // //if left element is not -1 ADD 1 we are NOT at the left border
-  // if (hor != 0 && arrr[hor-1][ver] != -1){
-  //   arrr[hor-1][ver]++;
-  // }
-  // //if top left element is not -1 ADD 1 and we are NOT at the left or top border
-  // if (hor != 0 && vert != 0 && arrr[hor-1][ver-1] != -1){
-  //   arrr[hor-1][ver-1]++;
-  // }
-  // //if bottom left element is not -1 ADD 1 and we are not at the left or bottom border
-  // if (hor != 0 && && arrr[hor-1][ver+1] != -1) {
-  //   arrr[hor-1][ver-1]++;
-  // }
-  // //if top element is not -1 ADD 1
-  // if (arrr[hor][ver+1] != -1) {
-  //   arrr[hor][ver]++;
-  // }
-  // //if bottom element is not -1 ADD 1
-  // if (arrr[hor][ver-1] != -1) {
-  //   arrr[hor][ver-1]++;
-  // }
-  // //if right element is not -1 ADD 1
-  // if (arrr[hor+1][ver] != -1) {
-  //   arrr[hor+1][ver]++;
-  // }
-  // //if top right element is not -1 ADD 1
-  // if (arrr[hor+1][ver+1] != -1) {
-  //   arrr[hor+1][ver+1]++;
-  // }
-  // //if bottom right element is not -1 ADD 1
-  // if (arrr[hor+1][ver-1] != -1) {
-  //   arrr[hor+1][ver-1]++;
 
 
