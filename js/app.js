@@ -8,10 +8,12 @@
 //size of the board, will be taken from get form
 var boardSize = 3;
 
+var difficulty = .3;
+
 //creating the vertical array to nest horizontal arrays
-var row1 = [0, 0, 0, 0];
+var row1 = [-1, 0, 0, 0];
 var row2 = [0, -1, 0, 0];
-var row3 = [0, 0, 0, 0];
+var row3 = [-1, 0, 0, 0];
 var row4 = [0, 0, 0, -1];
 var gameArray = new Array(row1,row2,row3,row4);
 
@@ -31,6 +33,7 @@ var gameArray = new Array(row1,row2,row3,row4);
 
 //FUNCTION: creates an empty array by taking
 //ARGUMENTS: horizontal size and vertical size
+uses random to randomize the values of the array
 function createArray(x, y) {
   let gameArray3 = [];
   //creating a for loop to give columns
@@ -38,12 +41,17 @@ function createArray(x, y) {
     //using push method to add array to the array
     gameArray3.push([]);
     for (let j = 0; j < y; j++) {
+      //random function to validate against the difficulty
+      if (Math.floor(Math.random()) <= difficulty) {
+        gameArray3[i].push('-1');
+      }
       //unsing push method to populate values
-      gameArray3[i].push('0')
+      gameArray3[i].push('0');
     }
   }
   console.log(gameArray3);
 }
+createArray();
 
 //FUNCTION: one by one console where the mines are.
 //ARGUMENTS: the array to be checked
