@@ -19,7 +19,7 @@ var gameArray = new Array(row1,row2,row3,row4);
 
 //FUNCTION: creates an empty array by taking
 //ARGUMENTS: horizontal size and vertical size
-uses random to randomize the values of the array
+//uses random to randomize the values of the array
 function createArray(x, y) {
   let gameArray3 = [];
   //creating a for loop to give columns
