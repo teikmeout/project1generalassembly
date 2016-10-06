@@ -46,17 +46,22 @@ function createArray(x, y) {
 }
 
 //FUNCTION: one by one check how many mines are around
-function flagger(arrr) {
+function flagger() {
   //double for loop for iteration in matrix
-  for (let i = 0; i < arrr.length; i++) {
-    for (let j = 0; j < arrr[i].length; j++) {
+  for (let i = 0; i < gameArray.length; i++) {
+    for (let j = 0; j < gameArray[i].length; j++) {
+        //if there's a -1 display that you have hit a mine
+        if (gameArray[i][j] == -1) {
+          console.log(`hit a mine at ${i},${j}`);
+        } else console.log(`NO MINE at ${i},${j}`);
 
     }
   }
 }
+flagger(gameArray);
 
 //function created to add +1 to boxes around when you hit a mine
-function iterateAround(arrr) {
+function addOneAllAround(arrr, hor, ver) {
 
 }
 
