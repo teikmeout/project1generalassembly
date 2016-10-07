@@ -3,12 +3,16 @@ $(function() {
   console.log('DOM loaded and ready!');
   // populateArray(gameArray);
   // createArray(3,3);
+  createArray(gameArray, boardSize, boardSize);
+  addOneAllAround(gameArray);
+  createBoard(gameArray);
+  populateDivs(gameArray);
 })
 
 //size of the board, will be taken from get form
 var boardSize = 9;
 //variable that defines how many mines are placed inside the gameBoard
-var difficulty = 30;
+var difficulty = 10;
 
 //creating the vertical array to nest horizontal arrays
 // var row1 = [-1, 0, 0, 0];
@@ -39,7 +43,7 @@ function createArray(arrr,x, y) {
   }
   console.log(arrr);
 }
-createArray(gameArray, boardSize, boardSize);
+
 
 //FUNCTION: one by one console where the mines are.
 //ARGUMENTS: the array to be checked
@@ -119,19 +123,38 @@ function addOneAllAround(arrr) {
     }
   }
 }
-addOneAllAround(gameArray);
 
 //FUNCTION: populates DOM with array values
 //ARGUMENTS: receives the array
 function populateDivs(arrr) {
   for (let i = 0 ; i < arrr.length; i++) {
     for (let j = 0; j < arrr[i].length; j++) {
-      $('.row').eq(i).children('.cell').eq(j).html = arrr[i][j];
+      $('.row').eq(i).children('.cell').eq(j).text(arrr[i][j]);
+      // document.getElementsByClassName('row')[i].getElementsByClassName('cell')[j].innerHtml = arrr[i][j];
+      console.log(`gave cell ${i},${j} the value of ${arrr[i][j]}`);
     }
   }
 }
-populateDivs(gameArray);
-
 // console.log(gameArray);
+
+//FUNCTION: creates DIVS that are appended to the DOM once page loads
+//ARGUMENTS: recieves the size of the board from a GET form
+function createBoard(arrr) {
+  //create new DIV with class container
+  let $newSection = $("<section class ='gameBoard'></section>");
+  $('body').append($newSection);
+  //entering for loop to iterate through nested arrays
+  for (let i = 0; i < arrr.length; i++) {
+    //creating new row to append to DIV
+    let $newRow = $("<div class = 'row'></div>");
+    $newSection.append($newRow);
+    for (let j = 0; j < arrr[i].length; j++) {
+      //creating new cell to append to row
+      let $newCell = $("<div class = 'cell'></div>");
+      //apending child element to row
+      $newRow.append($newCell);
+    }
+  }
+}
 
 
