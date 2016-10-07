@@ -28,3 +28,19 @@
   display: flex;
   justify-content: center;
 }
+
+.containerAll {
+  border: 1px dotted green;
+  height: 100px;
+  width: 360px;
+}
+
+.header {
+  border: 1px dotted purple;
+  height:50px;
+}
+
+.containerGame {
+  border: 1px dotted pink;
+  height: 360px;
+}
