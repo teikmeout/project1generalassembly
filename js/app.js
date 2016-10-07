@@ -17,6 +17,9 @@ var difficulty = 10;
 var cellSize = 10;
 var newWidth = (boardSize*cellSize)+10;
 
+//we need a mine counter as all minesweeper games have
+var mineCounter = 0;
+
 //creating the vertical array to nest horizontal arrays
 // var row1 = [-1, 0, 0, 0];
 // var row2 = [0, -1, 0, 0];
@@ -40,6 +43,7 @@ function createArray(arrr,x, y) {
       //random function to validate against the difficulty
       if (Math.floor(Math.random() *100) <= difficulty) {
         arrr[i].push(-1);
+        mineCounter++;
       } else arrr[i].push(0);
       //unsing push method to populate values
     }
@@ -174,6 +178,10 @@ function createBoard(arrr) {
       $newRow.append($newCell);
     }
   }
+}
+
+function showCell() {
+
 }
 
 
