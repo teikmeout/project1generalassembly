@@ -9,40 +9,47 @@
   /*flex used to space out columns */
   flex-direction: column;
   justify-content: space-around;
+  box-sizing: border-box;
 }
 
 /*styling the rows inside the gameBoard*/
 .row {
-  height: 30%;
-  width: 100%;
+  /*height: 30%;*/
+  /*width: 100%;*/
   border: 1px dotted blue;
   /*maybe I should use flex box for spacing*/
   display: flex;
   justify-content: space-around;
+  box-sizing: border-box;
 }
 
 .cell {
-  height: 40px;
-  width: 40px;
+  /*height: 40px;*/
+  /*width: 40px;*/
   border: 1px dotted orange;
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
+  border-radius: 10%;
 }
 
 .containerAll {
   border: 1px dotted green;
-  height: 100px;
+  height: 360px;
   width: 360px;
+  box-sizing: border-box;
 }
 
 .header {
-  border: 1px dotted purple;
+  border: 1px dotted red;
   height:50px;
+  box-sizing: border-box;
 }
 
 .containerGame {
   border: 1px dotted pink;
   height: 360px;
+  box-sizing: border-box;
 }
 
 .covered {
@@ -51,5 +58,6 @@
 }
 
 .uncovered {
-
+  background-color: lightblue;
+  color: black;
 }

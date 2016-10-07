@@ -10,12 +10,12 @@ $(function() {
 })
 
 //size of the board, will be taken from get form
-var boardSize = 18;
+var boardSize = 100;
 //variable that defines how many mines are placed inside the gameBoard
 var difficulty = 10;
 //variable that defines the size of every box
-var cellSize = 40;
-var newWidth = boardSize*cellSize;
+var cellSize = 10;
+var newWidth = (boardSize*cellSize)+10;
 
 //creating the vertical array to nest horizontal arrays
 // var row1 = [-1, 0, 0, 0];
@@ -143,17 +143,33 @@ function populateDivs(arrr) {
 //FUNCTION: creates DIVS that are appended to the DOM once page loads
 //ARGUMENTS: recieves the size of the board from a GET form
 function createBoard(arrr) {
+  //point to cointainerAll and change size accordingly
+  $('.containerAll').css({
+    'height' : `${cellSize*boardSize}px`,
+    'width' : `${cellSize*boardSize}`
+  })
   //create new DIV with class container
-  let $newSection = $("<section class =`gameBoard' style = 'background-color: lightblue; width: ${newWidth}`></section>");
+  let $newSection = $("<section class ='gameBoard'></section>");
+  $newSection.css({
+    'width' : `${cellSize*boardSize}px`,
+    'height' : `${cellSize*boardSize}px`})
+  debugger
   $('.containerGame').append($newSection);
   //entering for loop to iterate through nested arrays
   for (let i = 0; i < arrr.length; i++) {
     //creating new row to append to DIV
     let $newRow = $("<div class = 'row'></div>");
+    $newRow.css({
+    'width' : `${cellSize*boardSize}px`,
+    'height' : `${cellSize}px`})
     $newSection.append($newRow);
     for (let j = 0; j < arrr[i].length; j++) {
       //creating new cell to append to row
       let $newCell = $("<div class = 'cell covered'></div>");
+      $newCell.css({
+        'height' : `${cellSize}px`,
+        'width' : `${cellSize}px`,
+        'cursor' : 'default'})
       //apending child element to row
       $newRow.append($newCell);
     }
