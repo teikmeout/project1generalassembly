@@ -44,3 +44,12 @@
   border: 1px dotted pink;
   height: 360px;
 }
+
+.covered {
+  background-color: gray;
+  color: gray;
+}
+
+.uncovered {
+
+}
