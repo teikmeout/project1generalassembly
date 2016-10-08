@@ -61,3 +61,8 @@
   background-color: lightblue;
   color: black;
 }
+
+.flagged {
+  background-image: url(./images/flag.png);
+  background-size: cover;
+}

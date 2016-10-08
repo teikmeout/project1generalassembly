@@ -10,11 +10,11 @@ $(function() {
 })
 
 //size of the board, will be taken from get form
-var boardSize = 100;
+var boardSize = 15;
 //variable that defines how many mines are placed inside the gameBoard
 var difficulty = 10;
 //variable that defines the size of every box
-var cellSize = 10;
+var cellSize = 50;
 var newWidth = (boardSize*cellSize)+10;
 
 //we need a mine counter as all minesweeper games have
@@ -180,8 +180,28 @@ function createBoard(arrr) {
   }
 }
 
-function showCell() {
-
+//FUNCTION: called by left click event listener
+//ARGUMENTS: recieves event from the DOM and modifies values of that item
+function showCell(event) {
+  //to be able to determine left click from right
+  switch (event.which) {
+    //left click
+    case 1: {
+      break;
+    }
+    //middle click
+    case 2: {
+      break;
+    }
+    //right click
+    case 3: {
+      //add class with flag image
+      break;
+    }
+    default: console.log('this mouse is weird')
+  }
+  event.target.removeClass(covered[400]);
 }
+
 
 
