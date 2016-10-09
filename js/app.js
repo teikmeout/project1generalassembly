@@ -138,8 +138,8 @@ function populateDivs(arrr) {
     for (let j = 0; j < arrr[i].length; j++) {
       //had to put in a <p> to be able to hide the info on the screen
       let $newText = $('<p></p>');
-      // $newText.css({
-      //   'visibility' : 'hidden'})
+      $newText.css({
+        'visibility' : 'hidden'})
       $newText.html(arrr[i][j]);
       $('.row').eq(i).children('.cell').eq(j).append($newText);
       // document.getElementsByClassName('row')[i].getElementsByClassName('cell')[j].innerHtml = arrr[i][j];
@@ -183,7 +183,7 @@ function createBoard(arrr) {
   $newHeader.append($newResetButton);
 
   //creating new timer
-  let $newTimer = $("<div id='timer'></div>");
+  let $newTimer = $("<div id='timer'>0</div>");
   //appending new timer to header
   $newHeader.append($newTimer);
 
@@ -217,7 +217,8 @@ function createBoard(arrr) {
     $newSection.append($newRow);
     for (let j = 0; j < arrr[i].length; j++) {
       //creating new cell to append to row
-      let $newCell = $("<div class='cell'></div>");
+      let $newCell = $("<div class='cell covered'></div>");
+      // <img src='./images/flag2.png' class='flag'>
       //giving that cell css properties for formatting
       $newCell.css({
         'height' : `${cellSize}px`,
@@ -226,7 +227,7 @@ function createBoard(arrr) {
       })
       // onclick="handleLeftClick(this);" oncontextmenu="handleRightClick(this); return false;"
       //adding event listener during creation
-      // $newCell.on('click', showCell);
+      $newCell.on('click', leftClick);
       //apending child element to row
       $newRow.append($newCell);
     }
@@ -268,6 +269,16 @@ function createBoard(arrr) {
 //   }
 
 // }
+
+
+//FUNCTION: handles what happens with left click
+//ARGUMENTS: takes the event it was triggered on
+function leftClick(event) {
+  debugger
+  $(this).removeClass('covered');
+  $(this).addClass('uncovered');
+  $(this).children().eq(0).css({'visibility' : 'visible'});
+}
 
 //FUNCTION: handles what happens with right click
 //ARGUMENTS: takes the event it was targetted on

@@ -74,6 +74,12 @@ header {
   background-size: cover;
 }
 
+.flag {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
 /*.insideTextHidden {
   visibility: hidden;
 }*/
@@ -94,7 +100,14 @@ header {
 #timer {
   height: 80%;
   width: 25%;
-  background-color: blue;
+  /*background-color: blue;*/
+  font-family: helvetica;
+  color: #FFFFFF;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  padding-right: .5em;
 }
 
 
