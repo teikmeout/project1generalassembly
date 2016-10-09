@@ -228,6 +228,7 @@ function createBoard(arrr) {
       // onclick="handleLeftClick(this);" oncontextmenu="handleRightClick(this); return false;"
       //adding event listener during creation
       $newCell.on('click', leftClick);
+      $newCell.on('click', checkIfMine);
       //apending child element to row
       $newRow.append($newCell);
     }
@@ -274,7 +275,7 @@ function createBoard(arrr) {
 //FUNCTION: handles what happens with left click
 //ARGUMENTS: takes the event it was triggered on
 function leftClick(event) {
-  debugger
+  // debugger
   $(this).removeClass('covered');
   $(this).addClass('uncovered');
   $(this).children().eq(0).css({'visibility' : 'visible'});
@@ -284,6 +285,14 @@ function leftClick(event) {
 //ARGUMENTS: takes the event it was targetted on
 function rightClick(event) {
   //change front image to
+}
+
+//FUNCTION: checks it the value of the clicked box is -1
+//ARGUMENTS: this from the event listener
+function checkIfMine(event) {
+  if (this.childNodes[0].innerHTML == -1) {
+    console.log('mine!!');
+  } else console.log('you are fine');
 }
 
 
