@@ -1,4 +1,12 @@
 
+header {
+  background-color: red;
+  border: 1px dotted red;
+  height:50px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+}
 
 /*styling the game board div*/
 .gameBoard {
@@ -16,7 +24,7 @@
 .row {
   /*height: 30%;*/
   /*width: 100%;*/
-  border: 1px dotted blue;
+  /*border: 1px dotted blue;*/
   /*maybe I should use flex box for spacing*/
   display: flex;
   justify-content: space-around;
@@ -29,25 +37,23 @@
   border: 1px dotted orange;
   display: flex;
   justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   border-radius: 10%;
 }
 
 .containerAll {
   border: 1px dotted green;
-  height: 360px;
-  width: 360px;
+  height: 0;
+  width: 0;
   box-sizing: border-box;
 }
 
-.header {
-  border: 1px dotted red;
-  height:50px;
-  box-sizing: border-box;
-}
+
 
 .containerGame {
-  border: 1px dotted pink;
+  background-color: yellow;
+  /*border: 1px dotted pink;*/
   height: 360px;
   box-sizing: border-box;
 }
@@ -66,3 +72,28 @@
   background-image: url(./images/flag.png);
   background-size: cover;
 }
+
+/*.insideTextHidden {
+  visibility: hidden;
+}*/
+
+#counter {
+  height: 80%;
+  width: 25%;
+  background-color: blue;
+}
+
+/*styling for the happy or sad face*/
+#resetButton {
+  height: 90%;
+  width: 35%;
+  background-color: yellow;
+}
+
+#timer {
+  height: 80%;
+  width: 25%;
+  background-color: blue;
+}
+
+

@@ -6,15 +6,15 @@ $(function() {
   createArray(gameArray, boardSize, boardSize);
   addOneAllAround(gameArray);
   createBoard(gameArray);
-  // populateDivs(gameArray);
+  populateDivs(gameArray);
 })
 
 //size of the board, will be taken from get form
-var boardSize = 15;
+var boardSize = 9;
 //variable that defines how many mines are placed inside the gameBoard
 var difficulty = 10;
 //variable that defines the size of every box
-var cellSize = 50;
+var cellSize = 30;
 var newWidth = (boardSize*cellSize)+10;
 
 //we need a mine counter as all minesweeper games have
@@ -136,7 +136,12 @@ function addOneAllAround(arrr) {
 function populateDivs(arrr) {
   for (let i = 0 ; i < arrr.length; i++) {
     for (let j = 0; j < arrr[i].length; j++) {
-      $('.row').eq(i).children('.cell').eq(j).text(arrr[i][j]);
+      //had to put in a <p> to be able to hide the info on the screen
+      let $newText = $('<p></p>');
+      // $newText.css({
+      //   'visibility' : 'hidden'})
+      $newText.html(arrr[i][j]);
+      $('.row').eq(i).children('.cell').eq(j).append($newText);
       // document.getElementsByClassName('row')[i].getElementsByClassName('cell')[j].innerHtml = arrr[i][j];
       console.log(`gave cell ${i},${j} the value of ${arrr[i][j]}`);
     }
@@ -147,18 +152,58 @@ function populateDivs(arrr) {
 //FUNCTION: creates DIVS that are appended to the DOM once page loads
 //ARGUMENTS: recieves the size of the board from a GET form
 function createBoard(arrr) {
-  //point to cointainerAll and change size accordingly
-  $('.containerAll').css({
-    'height' : `${cellSize*boardSize}px`,
-    'width' : `${cellSize*boardSize}`
+  //creating new container for everything
+  let $newContainerAll = $("<div class='containerAll'></div>");
+  //point to cointainerAll and change size according to the board
+  $newContainerAll.css({
+    'height' : `${(cellSize*boardSize)+50}px`,
+    'width' : `${cellSize*boardSize}px`
   })
+  //apending to body
+  $('body').append($newContainerAll);
+
+  //creating the header
+  let $newHeader = $("<header></header>");
+  //point at header and change the size according to container
+  $newHeader.css({
+    'height' : `${boardSize*5}px`,
+    'width' : `100%`
+  })
+  //apending to containerAll
+  $newContainerAll.append($newHeader);
+
+  //creating new MineCounter
+  let $newMineCounter = $("<div id='counter'></div>");
+  //point at minecounter and append
+  $newHeader.append($newMineCounter);
+
+  //creating new Reset Button
+  let $newResetButton = $("<div id='resetButton'></div>");
+  //appending new resetButton
+  $newHeader.append($newResetButton);
+
+  //creating new timer
+  let $newTimer = $("<div id='timer'></div>");
+  //appending new timer to header
+  $newHeader.append($newTimer);
+
+  //THIS PART OF THE CODE COULD BE REDUNDANT
+  //creating new ContainerGame
+  // let $newContainerGame = $("<div class='containerGame'></div>");
+  // //modify size of containerGame according to the board
+  // $('.containerGame').css({
+  //   'height' : `${cellSize*boardSize}px`,
+  //   'width' : `${cellSize*boardSize}px`
+  // })
+
   //create new DIV with class container
   let $newSection = $("<section class ='gameBoard'></section>");
   $newSection.css({
     'width' : `${cellSize*boardSize}px`,
-    'height' : `${cellSize*boardSize}px`})
-  debugger
-  $('.containerGame').append($newSection);
+    'height' : `${cellSize*boardSize}px`
+  })
+  //apending to $newContainerAll
+  $newContainerAll.append($newSection);
   //entering for loop to iterate through nested arrays
   for (let i = 0; i < arrr.length; i++) {
     //creating new row to append to DIV
@@ -169,39 +214,70 @@ function createBoard(arrr) {
     $newSection.append($newRow);
     for (let j = 0; j < arrr[i].length; j++) {
       //creating new cell to append to row
-      let $newCell = $("<div class = 'cell covered'></div>");
+      let $newCell = $("<div class='cell covered'></div>");
+      //giving that cell css properties for formatting
       $newCell.css({
         'height' : `${cellSize}px`,
         'width' : `${cellSize}px`,
-        'cursor' : 'default'})
+        'cursor' : 'default',
+        // onclick="handleLeftClick(this);" oncontextmenu="handleRightClick(this); return false;"
+      })
+      //adding event listener during creation
+      // $newCell.on('click', showCell);
       //apending child element to row
       $newRow.append($newCell);
+      // $newCell.on('contextmenu',function(){
+      //  showCell();
+      //  return false;
+      //  })
     }
   }
 }
 
-//FUNCTION: called by left click event listener
-//ARGUMENTS: recieves event from the DOM and modifies values of that item
-function showCell(event) {
-  //to be able to determine left click from right
-  switch (event.which) {
-    //left click
-    case 1: {
-      break;
-    }
-    //middle click
-    case 2: {
-      break;
-    }
-    //right click
-    case 3: {
-      //add class with flag image
-      break;
-    }
-    default: console.log('this mouse is weird')
-  }
-  event.target.removeClass(covered[400]);
+// //FUNCTION: called by left click event listener
+// //ARGUMENTS: recieves event from the DOM and modifies values of that item
+// function showCell(event) {
+//   // debugger
+//   //removing class to uncover mine
+//   // event.target.removeClass('.covered');
+//   //to be able to determine left click from right
+//   switch (event.which) {
+//     //left click
+//     case 1: {
+//       // debugger
+//       // event.target.removeClass('uncovered');
+//       // this.css({
+//       //   'visibility' : 'visible'});
+//       console.log('left click');
+//       break;
+//     }
+//     //middle click
+//     case 2: {
+//       console.log('middle click');
+//       // event.target.addClass('uncovered');
+//       break;
+//     }
+//     //right click
+//     case 3: {
+//       console.log('right click');
+//       //add class with flag image
+//       break;
+//     }
+//     default: {
+//       console.log('this mouse is weird')
+//     }
+//   }
+
+// }
+
+//FUNCTION: handles what happens with right click
+//ARGUMENTS: takes the event it was targetted on
+function rightClick(event) {
+  //change front image to
 }
+
+
+
 
 
 
