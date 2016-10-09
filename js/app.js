@@ -156,7 +156,7 @@ function createBoard(arrr) {
   let $newContainerAll = $("<div class='containerAll'></div>");
   //point to cointainerAll and change size according to the board
   $newContainerAll.css({
-    'height' : `${(cellSize*boardSize)+50}px`,
+    'height' : `${(cellSize*boardSize)+(boardSize*5)}px`,
     'width' : `${cellSize*boardSize}px`
   })
   //apending to body
@@ -206,30 +206,29 @@ function createBoard(arrr) {
   $newContainerAll.append($newSection);
   //entering for loop to iterate through nested arrays
   for (let i = 0; i < arrr.length; i++) {
-    //creating new row to append to DIV
+    //creating new row to append to $newSection
     let $newRow = $("<div class = 'row'></div>");
+    //giving height and width for $newRow
     $newRow.css({
     'width' : `${cellSize*boardSize}px`,
-    'height' : `${cellSize}px`})
+    'height' : `${cellSize}px`
+    })
+    //apending $newRow to $newSection
     $newSection.append($newRow);
     for (let j = 0; j < arrr[i].length; j++) {
       //creating new cell to append to row
-      let $newCell = $("<div class='cell covered'></div>");
+      let $newCell = $("<div class='cell'></div>");
       //giving that cell css properties for formatting
       $newCell.css({
         'height' : `${cellSize}px`,
         'width' : `${cellSize}px`,
         'cursor' : 'default',
-        // onclick="handleLeftClick(this);" oncontextmenu="handleRightClick(this); return false;"
       })
+      // onclick="handleLeftClick(this);" oncontextmenu="handleRightClick(this); return false;"
       //adding event listener during creation
       // $newCell.on('click', showCell);
       //apending child element to row
       $newRow.append($newCell);
-      // $newCell.on('contextmenu',function(){
-      //  showCell();
-      //  return false;
-      //  })
     }
   }
 }
