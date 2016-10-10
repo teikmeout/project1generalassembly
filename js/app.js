@@ -19,6 +19,10 @@ var newWidth = (boardSize*cellSize)+10;
 
 //we need a mine counter as all minesweeper games have
 var mineCounter = 0;
+//we also need a flag counter
+var flagCounter = 0;
+//we need a timer too
+var timerCounter = 0;
 
 //creating the vertical array to nest horizontal arrays
 // var row1 = [-1, 0, 0, 0];
@@ -228,7 +232,7 @@ function createBoard(arrr) {
       // onclick="handleLeftClick(this);" oncontextmenu="handleRightClick(this); return false;"
       //adding event listener during creation
       $newCell.on('click', leftClick);
-      $newCell.on('click', checkIfMine);
+      $newCell.on('click', lose);
       //apending child element to row
       $newRow.append($newCell);
     }
@@ -289,11 +293,34 @@ function rightClick(event) {
 
 //FUNCTION: checks it the value of the clicked box is -1
 //ARGUMENTS: this from the event listener
-function checkIfMine(event) {
+function lose(event) {
   if (this.childNodes[0].innerHTML == -1) {
-    console.log('mine!!');
+    alert('You hit a mine!');
+    //double for loop that reveals mines
+    for (let i = 0; i < gameArray.length; i++) {
+      for(let j = 0; j < gameArray[0].length; j++) {
+        //ifstatement to check if -1
+        // debugger
+        if ($('.row').eq(i).children('.cell').eq(j).children()[0].innerHTML == -1) {
+          console.log(`value of cell [${i}][${j}] is -1`);
+          //apparently this is also acceptable for a switch class statement
+          $('.row').eq(i).children('.cell').eq(j).removeClass('covered').addClass('uncovered');
+          //making the text visible again after class switch
+          $('.row').eq(i).children('.cell').eq(j).children().eq(0).css({'visibility' : 'visible'});
+        }
+      }
+    }
+    //TODO: change mine image to corssed mine
   } else console.log('you are fine');
 }
+
+
+// FUNCTION: iterates the timer every second
+// ARGUMENTS: none, directly modifies the variable
+function timer() {
+  timerCounter++;
+}
+
 
 
 
