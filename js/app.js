@@ -233,7 +233,7 @@ function createBoard(arrr) {
       // onclick="handleLeftClick(this);" oncontextmenu="handleRightClick(this); return false;"
       //adding event listener during creation
       $newCell.on('click', leftClick);
-      $newCell.on('click', lose);
+      // $newCell.on('click', lose);
       //apending child element to row
       $newRow.append($newCell);
     }
@@ -284,6 +284,9 @@ function leftClick(event) {
   $(this).removeClass('covered');
   $(this).addClass('uncovered');
   $(this).children().eq(0).css({'visibility' : 'visible'});
+  var childHorIndex = $(this).index();
+  var childVerIndex = $(this).parent().index();
+  lose(childVerIndex, childHorIndex)
 }
 
 //FUNCTION: handles what happens with right click
@@ -294,9 +297,25 @@ function rightClick(event) {
 
 //FUNCTION: checks it the value of the clicked box is -1
 //ARGUMENTS: this from the event listener
-function lose(event) {
+function lose(ver, hor) {
+  //this index counter is not my idea. it's brilliant tho.
+  //src = http://stackoverflow.com/questions/5913927/get-child-node-index
+  // var childHorIndex = $(this).index();
+  // debugger
+  // var j = 0;
+  // while((childHorIndex = childHorIndex.previousSibling) != null ) j++;
+  // console.log(`index of element ${i}`);
+  // var childVerIndex = $(this).parent().index();
+  // var i = 0;
+  // while((childVerIndex = childVerIndex.previousSibling) != null ) i++;
+  // console.log(`clicked cell ${i},${j}`);
+
+  //END of index idea
+  // debugger
   //creating a switch to better handle the click
-  switch (this.childNodes[0].innerHTML) {
+  debugger
+  switch ($('.row').eq(ver).children('.cell').eq(hor).children()[0].innerHTML) {
+
     case '-1': {
       //double for loop that reveals mines
       for (let i = 0; i < gameArray.length; i++) {
@@ -314,67 +333,103 @@ function lose(event) {
       }
       alert('You hit a mine!');
       break;
-    }
+    } //END OF case -1
+
+    //THIS IS WHERE PERMEATE FUNCTION LIVES
     case '0': {
-      //this index counter is not my idea. it's brilliant tho.
-      //src = http://stackoverflow.com/questions/5913927/get-child-node-index
-      var childIndex = $(this);
-      var i = 0;
-      while((childIndex = childIndex.previousSibling) != null ) i++;
-      console.log(`index of element ${i}`);
-      //END of index idea
+
       // debugger
       //this.parentNode.children.length
       console.log('hit a ZERO!!');
       // debugger
       //get location of this element
-      //option left previoussibling
-      debugger
-      if (($(this).previousSibling !== null) && ($(this).previousSibling.children[0].innerHTML == 0)) {
+
+      //OPTION LEFT SIBLING
+      // if (($(this).prev() !== null) && ($(this).prev().children()[0].innerHTML == 0)) {
+      if ((hor > 0) && ($('.row').eq(ver).children('.cell').eq(hor-1).children().text()) == 0) {
         console.log('has 0 LEFT cell');
         // lose(this.previousSibling);
         // debugger
-        $(this).previousSibling.removeClass('covered').addClass('uncovered');
-        $(this).previousSibling.css({'visibility' : 'visible'});
+        // $(this).prev().removeClass('covered').addClass('uncovered');
+        // $('.row').eq(childVerIndex).children('.cell').eq(childHorIndex-1).removeClass('covered').addClass('uncovered');
+        reveal(ver, hor-1);
+        //I HAVE NO IDEA WHY THIS INSTACE SPECIFICALLY DOESNT WORK IN JQUERY
+        // $(this).prev().children()[0].style.visibility = 'visible'
+        // $('.row').eq(childVerIndex).children('.cell').eq(childHorIndex-1).children().css({'visibility' : 'visible'});
+        // $(this).prev().children()[0].css({'visibility' : 'visible'});
+      } else if (hor > 0) {
+        reveal(ver, hor-1);
       }
-      //option right nextsibling
-      if (($(this).nextSibling !== null) && ($(this).nextSibling.children[0].innerHTML == 0)) {
+
+      //OPTION RIGHT SIBLING
+      if ((hor < boardSize-1) && ($('.row').eq(ver).children('.cell').eq(hor+1).children().text() == 0)) {
         console.log('has 0 RIGHT cell');
+        reveal(ver, hor+1);
+        // $('.row').eq(childVerIndex).children('.cell').eq(childHorIndex+1).removeClass('covered').addClass('uncovered');
+        // $('.row').eq(childVerIndex).children('.cell').eq(childHorIndex+1).children().css({'visibility' : 'visible'});
+      } else if (hor < boardSize-1) {
+        reveal(ver, hor+1)
       }
-      //option top
-      if (($(this).parentNode.previousSibling !== null) && ($(this).parentNode.previousSibling.children[i].children[0].innerHTML == 0)) {
+
+      //OPTION TOP with options top left and top right
+      if ((ver > 0) && ($('.row').eq(ver-1).children('.cell').eq(hor).children().text() == 0)) {
         console.log('has 0 TOP cell');
-        //option left top corner
-        if (($(this).parentNode.previousSibling.children[i-1] !== null) && ($(this).parentNode.previousSibling.children[i-1].children[0].innerHTML == 0)) {
+        reveal(ver-1, hor);
+        // $('.row').eq(childVerIndex-1).children('.cell').eq(childHorIndex).removeClass('covered').addClass('uncovered');
+        // $('.row').eq(childVerIndex-1).children('.cell').eq(childHorIndex).children().css({'visibility' : 'visible'});
+
+        //OPTION TOPLEFT CORNER
+        if ((hor > 0) && ($('.row').eq(ver-1).children('.cell').eq(hor-1).children().text() == 0)) {
           console.log('has 0 TOPLEFT corner');
+          reveal(ver-1, hor-1);
+          // $('.row').eq(childVerIndex-1).children('.cell').eq(childHorIndex).removeClass('covered').addClass('uncovered');
+          // $('.row').eq(childVerIndex-1).children('.cell').eq(childHorIndex).children().css({'visibility' : 'visible'});
+        } else if (hor > 0) {
+          reveal(ver-1, hor-1);
         }
-        //option right top corner
-        if (($(this).parentNode.previousSibling.children[i+1] !== undefined) && ($(this).parentNode.previousSibling.children[i+1].children[0].innerHTML == 0)) {
+
+        //OPTION RIGHT TOP CORNER
+        if ((hor < boardSize-1) && ($('.row').eq(ver-1).children('.cell').eq(hor+1).children().text() == 0)) {
           console.log('has 0 TOPRIGHT corner');
+          reveal(ver-1, hor+1);
+        } else if (hor < boardSize-1) {
+          reveal(ver-1, hor+1);
         }
+      } else if (ver > 0) {
+        reveal(ver-1, hor);
       }
-      //option bottom
-      if (($(this).parentNode.nextSibling !== null) && ($(this).parentNode.nextSibling.children[i].children[0].innerHTML == 0)) {
+
+      //OPTION BOTTOM with options bottom left and bottom right
+      if ((ver < boardSize-1) && ($('.row').eq(ver+1).children('.cell').eq(hor).children().text() == 0)) {
         console.log('has 0 BOTTOM cell');
-        //option right bottom corner
-        if (($(this).parentNode.nextSibling.children[i+1] !== undefined) && ($(this).parentNode.nextSibling.children[i+1].children[0].innerHTML == 0)) {
+        reveal(ver+1, hor);
+        //OPTION BOTTOM RIGHT CORNER
+        if ((hor < boardSize-1) && ($('.row').eq(ver+1).children('.cell').eq(hor+1).children().text() == 0)) {
           console.log('has 0 BOTTOMRIGHT corner');
+          reveal(ver+1, hor+1);
+        } else if (hor < boardSize-1) {
+          reveal(ver+1, hor+1);
         }
-        //option left bottom corner
-        if (($(this).parentNode.nextSibling.children[i-1] !== null) && ($(this).parentNode.nextSibling.children[i-1].children[0].innerHTML == 0)) {
+        //OPTION BOTTOM LEFT CORNER
+        if ((hor > 0) && ($('.row').eq(ver+1).children('.cell').eq(hor-1).children().text() == 0)) {
           console.log('has 0 BOTTOMLEFT corner');
+          reveal(ver+1, hor-1);
+        } else if (hor > 0) {
+          reveal(ver+1, hor-1);
         }
+      } else if (ver < boardSize-1) {
+        reveal(ver+1, hor);
       }
 
 
       break;
-    }
+    } //END OF CASE 0
     default: {
       console.log('todo bien');
       break;
     }
-  }
-}
+  } //END OF SWITCH
+} //END OF FUNCTION
 
 
 // FUNCTION: iterates the timer every second
@@ -400,6 +455,11 @@ function checkHorizontalIndex() {
 
 function checkVerticalIndex() {
 
+}
+
+function reveal(ver, hor) {
+  $('.row').eq(ver).children('.cell').eq(hor).removeClass('covered').addClass('uncovered');
+  $('.row').eq(ver).children('.cell').eq(hor).children().css({'visibility' : 'visible'});
 }
 
 
