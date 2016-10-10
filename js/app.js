@@ -177,7 +177,8 @@ function createBoard(arrr) {
   $newContainerAll.append($newHeader);
 
   //creating new MineCounter
-  let $newMineCounter = $("<div id='counter'></div>");
+  //REMEMBER to display the mine counter!
+  let $newMineCounter = $("<div id='counter'>" + mineCounter + "</div>");
   //point at minecounter and append
   $newHeader.append($newMineCounter);
 
@@ -295,7 +296,6 @@ function rightClick(event) {
 //ARGUMENTS: this from the event listener
 function lose(event) {
   if (this.childNodes[0].innerHTML == -1) {
-    alert('You hit a mine!');
     //double for loop that reveals mines
     for (let i = 0; i < gameArray.length; i++) {
       for(let j = 0; j < gameArray[0].length; j++) {
@@ -310,6 +310,7 @@ function lose(event) {
         }
       }
     }
+    alert('You hit a mine!');
     //TODO: change mine image to corssed mine
   } else console.log('you are fine');
 }
@@ -319,6 +320,12 @@ function lose(event) {
 // ARGUMENTS: none, directly modifies the variable
 function timer() {
   timerCounter++;
+}
+
+//FUNCTION: when user clicks a 0 it should permeat and open until it hits a number
+//AGUMENTS: the array to check against
+function permeateZero(event) {
+
 }
 
 

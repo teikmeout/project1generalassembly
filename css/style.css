@@ -87,7 +87,14 @@ header {
 #counter {
   height: 80%;
   width: 25%;
-  background-color: blue;
+  background-color: red;
+  font-family: helvetica;
+  color: #FFFFFF;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  padding-left: .5em;
 }
 
 /*styling for the happy or sad face*/
