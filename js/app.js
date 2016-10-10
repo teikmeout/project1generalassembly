@@ -10,9 +10,9 @@ $(function() {
 })
 
 //size of the board, will be taken from get form
-var boardSize = 9;
+var boardSize = 18;
 //variable that defines how many mines are placed inside the gameBoard
-var difficulty = 1;
+var difficulty = 10;
 //variable that defines the size of every box
 var cellSize = 30;
 var newWidth = (boardSize*cellSize)+10;
@@ -313,7 +313,7 @@ function lose(ver, hor) {
   //END of index idea
   // debugger
   //creating a switch to better handle the click
-  debugger
+  // debugger
   switch ($('.row').eq(ver).children('.cell').eq(hor).children()[0].innerHTML) {
 
     case '-1': {
@@ -346,78 +346,86 @@ function lose(ver, hor) {
 
       //OPTION LEFT SIBLING
       // if (($(this).prev() !== null) && ($(this).prev().children()[0].innerHTML == 0)) {
-      if ((hor > 0) && ($('.row').eq(ver).children('.cell').eq(hor-1).children().text()) == 0) {
+      if ((hor > 0) && ($('.row').eq(ver).children('.cell').eq(hor-1).children().text() == 0) &&  ($('.row').eq(ver).children('.cell').eq(hor-1).hasClass('covered') == true) ) {
         console.log('has 0 LEFT cell');
         // lose(this.previousSibling);
         // debugger
         // $(this).prev().removeClass('covered').addClass('uncovered');
         // $('.row').eq(childVerIndex).children('.cell').eq(childHorIndex-1).removeClass('covered').addClass('uncovered');
         reveal(ver, hor-1);
+        lose(ver, hor-1);
         //I HAVE NO IDEA WHY THIS INSTACE SPECIFICALLY DOESNT WORK IN JQUERY
         // $(this).prev().children()[0].style.visibility = 'visible'
         // $('.row').eq(childVerIndex).children('.cell').eq(childHorIndex-1).children().css({'visibility' : 'visible'});
         // $(this).prev().children()[0].css({'visibility' : 'visible'});
-      } else if (hor > 0) {
+      } else if ((hor > 0) && ($('.row').eq(ver).children('.cell').eq(hor-1).children().text() !== -1)) {
         reveal(ver, hor-1);
       }
 
       //OPTION RIGHT SIBLING
-      if ((hor < boardSize-1) && ($('.row').eq(ver).children('.cell').eq(hor+1).children().text() == 0)) {
+      if ((hor < boardSize-1) && ($('.row').eq(ver).children('.cell').eq(hor+1).children().text() == 0) && ($('.row').eq(ver).children('.cell').eq(hor+1).hasClass('covered') == true)) {
         console.log('has 0 RIGHT cell');
         reveal(ver, hor+1);
+        lose(ver, hor+1);
         // $('.row').eq(childVerIndex).children('.cell').eq(childHorIndex+1).removeClass('covered').addClass('uncovered');
         // $('.row').eq(childVerIndex).children('.cell').eq(childHorIndex+1).children().css({'visibility' : 'visible'});
-      } else if (hor < boardSize-1) {
-        reveal(ver, hor+1)
+      } else if ((hor < boardSize-1) && ($('.row').eq(ver).children('.cell').eq(hor+1).children().text() !== -1)) {
+        reveal(ver, hor+1);
       }
 
       //OPTION TOP with options top left and top right
-      if ((ver > 0) && ($('.row').eq(ver-1).children('.cell').eq(hor).children().text() == 0)) {
+      if ((ver > 0) && ($('.row').eq(ver-1).children('.cell').eq(hor).children().text() == 0) && ($('.row').eq(ver-1).children('.cell').eq(hor).hasClass('covered') == true)) {
         console.log('has 0 TOP cell');
         reveal(ver-1, hor);
+        lose(ver-1, hor);
         // $('.row').eq(childVerIndex-1).children('.cell').eq(childHorIndex).removeClass('covered').addClass('uncovered');
         // $('.row').eq(childVerIndex-1).children('.cell').eq(childHorIndex).children().css({'visibility' : 'visible'});
 
         //OPTION TOPLEFT CORNER
-        if ((hor > 0) && ($('.row').eq(ver-1).children('.cell').eq(hor-1).children().text() == 0)) {
+        if ((hor > 0) && ($('.row').eq(ver-1).children('.cell').eq(hor-1).children().text() == 0) && ($('.row').eq(ver-1).children('.cell').eq(hor-1).hasClass('covered') == true)) {
           console.log('has 0 TOPLEFT corner');
           reveal(ver-1, hor-1);
+          lose(ver-1, hor-1);
           // $('.row').eq(childVerIndex-1).children('.cell').eq(childHorIndex).removeClass('covered').addClass('uncovered');
           // $('.row').eq(childVerIndex-1).children('.cell').eq(childHorIndex).children().css({'visibility' : 'visible'});
-        } else if (hor > 0) {
+        } else if ((hor > 0) && ($('.row').eq(ver-1).children('.cell').eq(hor-1).children().text() !== -1)) {
           reveal(ver-1, hor-1);
         }
 
-        //OPTION RIGHT TOP CORNER
-        if ((hor < boardSize-1) && ($('.row').eq(ver-1).children('.cell').eq(hor+1).children().text() == 0)) {
+        //OPTION TOP RIGHT CORNER
+        if ((hor < boardSize-1) && ($('.row').eq(ver-1).children('.cell').eq(hor+1).children().text() == 0) && ($('.row').eq(ver-1).children('.cell').eq(hor+1).hasClass('covered') == true)) {
           console.log('has 0 TOPRIGHT corner');
           reveal(ver-1, hor+1);
-        } else if (hor < boardSize-1) {
+          lose(ver-1, hor+1);
+        } else if ((hor < boardSize-1) && ($('.row').eq(ver-1).children('.cell').eq(hor+1).children().text() !== -1)) {
           reveal(ver-1, hor+1);
         }
-      } else if (ver > 0) {
+      } else if ((ver > 0) && ($('.row').eq(ver-1).children('.cell').eq(hor).children().text() !== -1)) {
         reveal(ver-1, hor);
       }
 
       //OPTION BOTTOM with options bottom left and bottom right
-      if ((ver < boardSize-1) && ($('.row').eq(ver+1).children('.cell').eq(hor).children().text() == 0)) {
+      if ((ver < boardSize-1) && ($('.row').eq(ver+1).children('.cell').eq(hor).children().text() == 0) && ($('.row').eq(ver+1).children('.cell').eq(hor).hasClass('covered') == true)) {
         console.log('has 0 BOTTOM cell');
         reveal(ver+1, hor);
+        lose(ver+1, hor);
         //OPTION BOTTOM RIGHT CORNER
-        if ((hor < boardSize-1) && ($('.row').eq(ver+1).children('.cell').eq(hor+1).children().text() == 0)) {
+        if ((hor < boardSize-1) && ($('.row').eq(ver+1).children('.cell').eq(hor+1).children().text() == 0) && ($('.row').eq(ver+1).children('.cell').eq(hor+1).hasClass('covered') == true)) {
           console.log('has 0 BOTTOMRIGHT corner');
           reveal(ver+1, hor+1);
-        } else if (hor < boardSize-1) {
+          lose(ver+1, hor+1);
+        } else if ((hor < boardSize-1) && ($('.row').eq(ver+1).children('.cell').eq(hor+1).children().text() !== -1)) {
           reveal(ver+1, hor+1);
         }
         //OPTION BOTTOM LEFT CORNER
-        if ((hor > 0) && ($('.row').eq(ver+1).children('.cell').eq(hor-1).children().text() == 0)) {
+        if ((hor > 0) && ($('.row').eq(ver+1).children('.cell').eq(hor-1).children().text() == 0) && ($('.row').eq(ver+1).children('.cell').eq(hor-1).hasClass('covered') == true)) {
           console.log('has 0 BOTTOMLEFT corner');
           reveal(ver+1, hor-1);
-        } else if (hor > 0) {
+          lose(ver+1, hor-1);
+        } else if ((hor > 0) && ($('.row').eq(ver+1).children('.cell').eq(hor-1).children().text() !== -1)) {
           reveal(ver+1, hor-1);
         }
-      } else if (ver < boardSize-1) {
+      } else if ((ver < boardSize-1) && ($('.row').eq(ver+1).children('.cell').eq(hor).children().text() !== -1)) {
         reveal(ver+1, hor);
       }
 
