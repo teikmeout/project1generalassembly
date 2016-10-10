@@ -12,7 +12,7 @@ $(function() {
 //size of the board, will be taken from get form
 var boardSize = 9;
 //variable that defines how many mines are placed inside the gameBoard
-var difficulty = 10;
+var difficulty = 1;
 //variable that defines the size of every box
 var cellSize = 30;
 var newWidth = (boardSize*cellSize)+10;
@@ -295,38 +295,113 @@ function rightClick(event) {
 //FUNCTION: checks it the value of the clicked box is -1
 //ARGUMENTS: this from the event listener
 function lose(event) {
-  if (this.childNodes[0].innerHTML == -1) {
-    //double for loop that reveals mines
-    for (let i = 0; i < gameArray.length; i++) {
-      for(let j = 0; j < gameArray[0].length; j++) {
-        //ifstatement to check if -1
-        // debugger
-        if ($('.row').eq(i).children('.cell').eq(j).children()[0].innerHTML == -1) {
-          console.log(`value of cell [${i}][${j}] is -1`);
-          //apparently this is also acceptable for a switch class statement
-          $('.row').eq(i).children('.cell').eq(j).removeClass('covered').addClass('uncovered');
-          //making the text visible again after class switch
-          $('.row').eq(i).children('.cell').eq(j).children().eq(0).css({'visibility' : 'visible'});
+  //creating a switch to better handle the click
+  switch (this.childNodes[0].innerHTML) {
+    case '-1': {
+      //double for loop that reveals mines
+      for (let i = 0; i < gameArray.length; i++) {
+        for(let j = 0; j < gameArray[0].length; j++) {
+          //ifstatement to check if -1
+          // debugger
+          if ($('.row').eq(i).children('.cell').eq(j).children()[0].innerHTML == -1) {
+            console.log(`value of cell [${i}][${j}] is -1`);
+            //apparently this is also acceptable for a switch class statement
+            $('.row').eq(i).children('.cell').eq(j).removeClass('covered').addClass('uncovered');
+            //making the text visible again after class switch
+            $('.row').eq(i).children('.cell').eq(j).children().eq(0).css({'visibility' : 'visible'});
+          }
         }
       }
+      alert('You hit a mine!');
+      break;
     }
-    alert('You hit a mine!');
-    //TODO: change mine image to corssed mine
-  } else console.log('you are fine');
+    case '0': {
+      //this index counter is not my idea. it's brilliant tho.
+      //src = http://stackoverflow.com/questions/5913927/get-child-node-index
+      var childIndex = $(this);
+      var i = 0;
+      while((childIndex = childIndex.previousSibling) != null ) i++;
+      console.log(`index of element ${i}`);
+      //END of index idea
+      // debugger
+      //this.parentNode.children.length
+      console.log('hit a ZERO!!');
+      // debugger
+      //get location of this element
+      //option left previoussibling
+      debugger
+      if (($(this).previousSibling !== null) && ($(this).previousSibling.children[0].innerHTML == 0)) {
+        console.log('has 0 LEFT cell');
+        // lose(this.previousSibling);
+        // debugger
+        $(this).previousSibling.removeClass('covered').addClass('uncovered');
+        $(this).previousSibling.css({'visibility' : 'visible'});
+      }
+      //option right nextsibling
+      if (($(this).nextSibling !== null) && ($(this).nextSibling.children[0].innerHTML == 0)) {
+        console.log('has 0 RIGHT cell');
+      }
+      //option top
+      if (($(this).parentNode.previousSibling !== null) && ($(this).parentNode.previousSibling.children[i].children[0].innerHTML == 0)) {
+        console.log('has 0 TOP cell');
+        //option left top corner
+        if (($(this).parentNode.previousSibling.children[i-1] !== null) && ($(this).parentNode.previousSibling.children[i-1].children[0].innerHTML == 0)) {
+          console.log('has 0 TOPLEFT corner');
+        }
+        //option right top corner
+        if (($(this).parentNode.previousSibling.children[i+1] !== undefined) && ($(this).parentNode.previousSibling.children[i+1].children[0].innerHTML == 0)) {
+          console.log('has 0 TOPRIGHT corner');
+        }
+      }
+      //option bottom
+      if (($(this).parentNode.nextSibling !== null) && ($(this).parentNode.nextSibling.children[i].children[0].innerHTML == 0)) {
+        console.log('has 0 BOTTOM cell');
+        //option right bottom corner
+        if (($(this).parentNode.nextSibling.children[i+1] !== undefined) && ($(this).parentNode.nextSibling.children[i+1].children[0].innerHTML == 0)) {
+          console.log('has 0 BOTTOMRIGHT corner');
+        }
+        //option left bottom corner
+        if (($(this).parentNode.nextSibling.children[i-1] !== null) && ($(this).parentNode.nextSibling.children[i-1].children[0].innerHTML == 0)) {
+          console.log('has 0 BOTTOMLEFT corner');
+        }
+      }
+
+
+      break;
+    }
+    default: {
+      console.log('todo bien');
+      break;
+    }
+  }
 }
 
 
 // FUNCTION: iterates the timer every second
 // ARGUMENTS: none, directly modifies the variable
-function timer() {
-  timerCounter++;
+// function timer() {
+//   timerCounter++;
+// }
+
+// //FUNCTION: when user clicks a 0 it should permeat and open until it hits a number
+// //AGUMENTS: the array to check against
+// function permeateZero(event) {
+//   if (this.childNodes[0].innerHTML == 0) {
+
+
+
+
+//FUNCTION: made to calculate index of last siblings
+//ARGUMENTS: none at the moment
+function checkHorizontalIndex() {
+  var i = 0;
+  while( (child = child.previousSibling) != null ) i++;
 }
 
-//FUNCTION: when user clicks a 0 it should permeat and open until it hits a number
-//AGUMENTS: the array to check against
-function permeateZero(event) {
+function checkVerticalIndex() {
 
 }
+
 
 
 
