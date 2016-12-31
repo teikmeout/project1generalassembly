@@ -1,42 +1,48 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Minesweeper</title>
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="icon" href="./images/mineFavicon.png">
-</head>
-<body>
-<!-- title for index site  -->
-<div class="index">
-  <h1>Minesweeper Game</h1>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="./images/mineFavicon.png">
+  </head>
+  <!-- style="background: url(./images/background.png); -->
+  <body>
 
-</div>
+  <div class="containerIndex">
+    <!-- title for index site  -->
+    <div class="index showme">
+      <h1>Minesweeper</h1>
 
-<!-- this section is for instructions -->
-<section>
-  <h2>Instructions:</h2>
-  <p></p>
-</section>
+    </div>
 
-<!-- this sections is for difficulty selection -->
-<footer>
-  <p>Select a size</p>
-  <select name="sizeOfTheBoard">
-    <option value="">9*9</option>
-    <option value="">12*12</option>
-  </select>
+    <!-- this section is for instructions -->
+    <section class="cont-instructions showme">
+      <h2>Instructions:</h2>
+      <p>Find the mines by analizing the numbers that dislay the mines in the vicinity</p>
+      <p> Right click to flag a mine, left click to open up box and reveal its content</p>
+    </section>
 
-  <p>Select a dificulty level</p>
-  <select name="difficultyLevel">
-    <option value=".3">Beginner</option>
-    <option value=".5">Advanced</option>
-  </select>
-  <br>
-  <a href = './game.html'><button type = 'button' value = 'START!'>START</button></a>
-</footer>
+    <!-- this sections is for difficulty selection -->
+    <section class="cont-difficulty showme">
+      <p>Select a size</p>
+      <select name="sizeOfTheBoard">
+        <option value="">9*9</option>
+        <option value="">12*12</option>
+      </select>
+
+      <p>Select a dificulty level</p>
+      <select name="difficultyLevel">
+        <option value=".3">Beginner</option>
+        <option value=".5">Advanced</option>
+      </select>
+      <br>
+      <a href = './game.html'><button type = 'button' value = 'START!'>START</button></a>
+    </section> <!-- end of cont-dificulty-->
+  </div> <!-- end of containerIndex-->
 
 
-</body>
+  </body>
 </html>
