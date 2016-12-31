@@ -1,0 +1,112 @@
+/*body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  /*position: cover;*/
+  font-family: "lucida console", Monaco, monospace;
+  color: #FAFAFA;
+}*/
+
+/*styling the game board div*/
+.gameBoard {
+  height: 360px;
+  width: 360px;
+  /*border: 1px dotted red;*/
+  display: flex;
+  /*flex used to space out columns */
+  flex-direction: column;
+  justify-content: space-around;
+  box-sizing: border-box;
+}
+
+/*styling the rows inside the gameBoard*/
+.row {
+  /*height: 30%;*/
+  /*width: 100%;*/
+  /*border: 1px dotted blue;*/
+  /*maybe I should use flex box for spacing*/
+  display: flex;
+  justify-content: space-around;
+  box-sizing: border-box;
+}
+
+.cell {
+  /*height: 40px;*/
+  /*width: 40px;*/
+  border: 1px dotted green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 10%;
+}
+
+.containerAll {
+  border: 1px dotted green;
+  height: 0;
+  width: 0;
+  box-sizing: border-box;
+}
+
+.containerGame {
+  background-color: yellow;
+  /*border: 1px dotted pink;*/
+  height: 360px;
+  box-sizing: border-box;
+}
+
+.covered {
+  background-color: gray;
+  color: gray;
+}
+
+.uncovered {
+  background-color: lightblue;
+  color: black;
+}
+
+.flagged {
+  background-image: url(./images/flag.png);
+  background-size: cover;
+}
+
+.flag {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+#counter {
+  height: 80%;
+  width: 25%;
+  background-color: red;
+  font-family: helvetica;
+  color: #FFFFFF;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  padding-left: .5em;
+}
+
+/*styling for the happy or sad face*/
+#resetButton {
+  height: 90%;
+  width: 35%;
+  background-color: yellow;
+}
+
+#timer {
+  height: 80%;
+  width: 25%;
+  /*background-color: blue;*/
+  font-family: helvetica;
+  color: #FFFFFF;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  padding-right: .5em;
+}
