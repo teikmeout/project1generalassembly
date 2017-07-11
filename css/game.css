@@ -4,9 +4,20 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  /*position: cover;*/
+  position: cover;
   font-family: "lucida console", Monaco, monospace;
   color: #FAFAFA;
+}
+*/
+
+/*header {
+  background-color: red;
+  border: 1px dotted red;
+  height:50px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }*/
 
 /*styling the game board div*/
