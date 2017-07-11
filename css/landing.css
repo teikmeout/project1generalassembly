@@ -1,19 +1,75 @@
-
-/*body {
+/*this page will be used only by the landing page*/
+html {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-}*/
-header {
-  background-color: red;
-  /*border: 1px dotted red;*/
-  height:50px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  font-family: "lucida console", Monaco, monospace;
+  color: #FAFAFA;
 }
 
+h1.title {
+  font-size: 120px;
+}
+
+.difficulty-container select {
+  margin-top: 20px;
+  padding: 10px;
+  height: 55px;
+  width: 200px;
+  border-radius: 4px;
+  border: 3px solid #EB5168;
+  /*outline: none;*/
+  transition: border-color 0.2s;
+  background: #FAFAFA;
+  /*line-height: normal;*/
+  /*font-family: inherit;*/
+  /*font-size: inherit;*/
+  /*line-height: inherit;*/
+}
+
+.difficulty-container button {
+  margin-top: 15px;
+  padding: 3px;
+  height: 30px;
+  width: 80px;
+  border-radius: 3px;
+  background-color: darkcyan;
+}
+
+.containerIndex {
+
+  height: 100vh;
+  width: 100vw;
+  background: url(../images/background.png) no-repeat fixed /*center*/ center;
+  background-size: cover;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.cont-difficulty button {
+  margin-top: 20px;
+  height: 40px;
+  width: 80px;
+  border: none;
+  border-radius: 4px;
+  background-color: firebrick;
+  color: #FAFAFA;
+}
+
+/*this is not working, will have to come back to it*/
+.cont-difficuty button:hover {
+  color: black;
+}
 /*styling the game board div*/
 .gameBoard {
   height: 360px;
@@ -122,4 +178,21 @@ header {
   padding-right: .5em;
 }
 
+/*media queries for responsive design*/
+@media (max-width: 1080px) {
+
+}
+
+
+@media (max-width: 850px) {
+
+  h1.title {
+    font-size: 80px;
+  }
+}
+
+
+.border {
+  border: 1px solid red;
+}
 
