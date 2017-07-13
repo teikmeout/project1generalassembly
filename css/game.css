@@ -1,4 +1,9 @@
-/*body {
+/*extending page all height*/
+html {
+  height: 100%;
+}
+/*setting game thing in the middle*/
+body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,28 +13,17 @@
   font-family: "lucida console", Monaco, monospace;
   color: #FAFAFA;
 }
-*/
 
-/*header {
-  background-color: red;
-  border: 1px dotted red;
-  height:50px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}*/
 
-/*styling the game board div*/
+
+
 .gameBoard {
-  height: 360px;
-  width: 360px;
-  /*border: 1px dotted red;*/
+  /*noheight and width needed since they are put in JS*/
+  /*border: 1px dotted red;
   display: flex;
-  /*flex used to space out columns */
   flex-direction: column;
   justify-content: space-around;
-  box-sizing: border-box;
+  box-sizing: border-box;*/
 }
 
 /*styling the rows inside the gameBoard*/
@@ -54,18 +48,31 @@
   border-radius: 10%;
 }
 
+
+/*-------------------*/
+/*STYLING FOR GAME*/
+
 .containerAll {
-  border: 1px dotted green;
-  height: 0;
-  width: 0;
+  /*border: 1px dotted green;*/
   box-sizing: border-box;
+  border-radius: 10px;
+}
+
+header {
+  background-color: red;
+  border: 1px dotted red;
+  height:50px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .containerGame {
-  background-color: yellow;
-  /*border: 1px dotted pink;*/
-  height: 360px;
   box-sizing: border-box;
+  background-color: blue;
+  height: 360px;
+  /*border: 1px dotted pink;*/
 }
 
 .covered {
