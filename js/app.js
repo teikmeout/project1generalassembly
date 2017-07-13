@@ -157,9 +157,8 @@ $(function() {
   //FUNCTION: creates DIVS that are appended to the DOM once page loads
   //ARGUMENTS: recieves the size of the board from a GET form
   function createBoard(arrr) {
-    //creating new container for everything
+    // game container
     let $newContainerAll = $("<div class='containerAll'></div>");
-    //point to cointainerAll and change size according to the board
     $newContainerAll.css({
       'height' : `${(cellSize*boardSize)+(boardSize*5)}px`,
       'width' : `${cellSize*boardSize}px`
