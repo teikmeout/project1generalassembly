@@ -163,19 +163,18 @@ $(function() {
     $newContainerAll.css({
       'height' : `${(cellSize*boardSize)+(boardSize*5)}px`,
       'width' : `${cellSize*boardSize}px`
-    })
-    //apending to body
-    $('body').append($newContainerAll);
+    }).appendTo($('body'));
 
-    //creating the header
+    // $('body').append($newContainerAll);
     let $newHeader = $("<header></header>");
     //point at header and change the size according to container
     $newHeader.css({
       'height' : `${boardSize*5}px`,
       'width' : `100%`
-    })
+    }).appendTo($newContainerAll)
+
     //apending to containerAll
-    $newContainerAll.append($newHeader);
+    // $newContainerAll.append($newHeader);
 
     //creating new MineCounter
     //REMEMBER to display the mine counter!
