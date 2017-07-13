@@ -17,24 +17,28 @@
     <section class="cont-instructions">
       <h2>Instructions:</h2>
       <p>This game follows the same convention for minesweepers's rules:</p>
-      <p>Right click to flag a mine, left click to open up box and reveal its content</p>
+      <p>Mines are hidden under the tiles</p>
+      <p>Right click to flag a mine, left click to open up a tile and reveal its content</p>
+      <p>Use the numbers to </p>
     </section>
 
     <!-- this sections is for difficulty selection -->
     <section class="difficulty-container">
-      <p>Select a size</p>
-      <select name="sizeOfTheBoard">
-        <option value="9">9*9</option>
-        <option value="12">12*12</option>
-      </select>
+      <form action="./game.html">
+        <p>Select a size</p>
+        <select name="size">
+          <option value="9">9*9</option>
+          <option value="12">12*12</option>
+        </select>
 
-      <p>Select a dificulty level</p>
-      <select name="difficultyLevel">
-        <option value=".3">Beginner</option>
-        <option value=".5">Advanced</option>
-      </select>
-      <br>
-      <a href = './game.html'><button type='button' value='START!'>START</button></a>
+        <p>Select a dificulty level</p>
+        <select name="diff">
+          <option value="3">Beginner</option>
+          <option value="5">Advanced</option>
+        </select>
+        <br>
+        <button type='submit' value='START!'>START</button>
+      </form>
     </section> <!-- end of cont-dificulty-->
   </div> <!-- end of containerIndex-->
 
