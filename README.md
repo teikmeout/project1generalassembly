@@ -1,19 +1,16 @@
 # Minesweeper
-by Jonathan Ahrens  
-
-This is a remake of the  original game distributed by Microsoft for everyone to use.
 
 ## Technologies
-- HTML
-- CSS
-- jQuery (Javascript)
+- create-react-app for scaffolding
+- React
+- React Router V4
+
+## Local Development Instructions:
+- clone
+- `npm i`
+- `npm start`
 
 ## Deployment
-Static Page, github pages.
+Handled by gh-pages.  
+Read up [here](https://paper.dropbox.com/doc/Deploying-Static-Websites-GH-pages-Surge-AWS-S3-KZShxWHwCFxZzltCgawNn)
 
-## Major blockers
-- I suck at CSS sometimes.  
-- Logic for win scneario is interestingly complex. Will have to refactor many times. 
-
-## Resources to share
-- [none yet](#) 
