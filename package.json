@@ -1,5 +1,6 @@
 {
-  "name": "minesweeper",
+  "name": "minsweeper",
+  "description": "minesweeper game created in react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

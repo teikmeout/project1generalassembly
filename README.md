@@ -1,12 +1,14 @@
 # Minesweeper
+This is our well known board game made in react.  
+
 
 ## Technologies
-- create-react-app for scaffolding
+- create-react-app (scaffolding)
 - React
 - React Router V4
 
 ## Local Development Instructions:
-- clone
+- clonet this repo 1`&& cd _$`
 - `npm i`
 - `npm start`
 
